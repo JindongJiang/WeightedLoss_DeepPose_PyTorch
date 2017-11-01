@@ -11,13 +11,51 @@ For those who achieves a better result base on this idea, please cite this repo 
 Beside, this is not the only one experiment I code for this "weighted loss" idea, I also implemented convolutional pose machine and a facial expression detection program in PyTorch, I will submit them very soon in other repos.
 
 ## Prerequisites
-- [ ] TODO
+* Python 3.6
+* scipy
+* sklearn
+* pillow
+* PyTorch 0.2
+* torchvision 0.1.9
+* tensorboardX (only if you need tensorboard summary)
+* TensorFlow (for tensorboard web server)
+* OpenCv > 3.0
 
 ## Download datas
-- [ ] TODO
+I found that original link of the Leeds Sports Pose Dataset at University of Leeds has been removed. You can download the dataset [here](http://sam.johnson.io/research/lsp.html) and the extended dataset [here](http://sam.johnson.io/research/lspet.html).
+
+Please download the dataset and unzip it in `data` folder with a directory tree like this:
+
+```bash
+data
+└── LSP
+    ├── lsp_dataset
+    │   ├── images
+    │   └── visualized
+    └── lspet_dataset
+        └── images
+```
 
 ## Usage
-- [ ] TODO
+### Training
+#### With weighted loss
+```bash
+python -W ignore::UserWarning humanpose_train.py --lsp-root ./data/LSP ./model --summary-dir ./summary --cuda --wl
+```
+#### Without weighted loss
+```bash
+python -W ignore::UserWarning humanpose_train.py --lsp-root ./data/LSP ./model --summary-dir ./summary --cuda
+```
+If you want evaluation of testing data during training, add `--epochs-per-eval 5`
+
+### Evaluation
+If you want to evaluate all saving models on both testing data and training data, and save the evaluation log,
+```bash
+python -W ignore::UserWarning humanpose_eval.py --lsp-root ./data/LSP --ckpt-dir ./model --no-other-print --testing-eval --training-eval --eval-log --pred-log --all
+```
+Otherwise, please decide weather to set `--testing-eval`, `--training-eval`, `--eval-log`, `--pred-log`, and `--num-eval N` for your own purpose.
+
+More argument for running training and testing please refer to `humanpose_train.py` and `humanpose_eval.py`
 
 ## References
 
