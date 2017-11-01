@@ -1,6 +1,6 @@
 # WeightedLoss_DeepPose_PyTorch
 
-In the experiment of my previous work [1] for indoor Semantic Segmentation, I use median-frequency weighting [2] to balance the loss from different classes of object. Later when I worked on another project of Structured Prediction, I start to think about bringing weighted loss to these regression task since the data for this regression tasks are also unbalance, for example, a standing person in the center of an image appears much more then a flipping person in the corner.
+In the experiment of my previous work [1] for indoor Semantic Segmentation, I use median-frequency weighting [2] to balance the loss from different classes of object. Later when I worked on another project of Structured Prediction, I start to think about bringing weighted loss to these regression task since the data for this regression tasks are also unbalance, for example, a standing person in the center of an image appears much more often than a flipping person in the corner.
 
 In this work, I try to use principal component analysis following with a kernel density estimation to estimate the distribution of the human pose. And use the median-frequency weighting to modify the loss function. However, it worth noticed that after many times of experiment for various combination of PCA and KDE parameters. This method fail to accelerate the learning (at least not in long run) or decrease the testing error. 😰😰
 
